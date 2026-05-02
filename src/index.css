@@ -1,0 +1,121 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@300;400;500;600&display=swap');
+
+@layer base {
+  :root {
+    /* Modern dark — deep navy with teal/violet accents */
+    --background: 230 25% 6%;
+    --foreground: 220 20% 92%;
+
+    --card: 230 22% 9%;
+    --card-foreground: 220 20% 92%;
+
+    --popover: 230 22% 9%;
+    --popover-foreground: 220 20% 92%;
+
+    --primary: 172 76% 56%;
+    --primary-foreground: 230 30% 8%;
+
+    --primary-glow: 172 90% 70%;
+    --accent-violet: 268 80% 68%;
+    --accent-amber: 32 95% 65%;
+
+    --secondary: 230 18% 14%;
+    --secondary-foreground: 220 20% 92%;
+
+    --muted: 230 18% 12%;
+    --muted-foreground: 220 12% 60%;
+
+    --accent: 268 80% 68%;
+    --accent-foreground: 220 20% 98%;
+
+    --destructive: 0 75% 60%;
+    --destructive-foreground: 220 20% 98%;
+
+    --border: 230 20% 16%;
+    --input: 230 20% 14%;
+    --ring: 172 76% 56%;
+
+    --radius: 0.875rem;
+
+    /* Gradients */
+    --gradient-hero: radial-gradient(ellipse at 20% 30%, hsl(172 80% 30% / 0.35), transparent 55%),
+                     radial-gradient(ellipse at 80% 70%, hsl(268 80% 40% / 0.30), transparent 55%),
+                     linear-gradient(180deg, hsl(230 30% 7%), hsl(230 30% 4%));
+    --gradient-text: linear-gradient(135deg, hsl(var(--primary-glow)), hsl(var(--accent-violet)));
+    --gradient-card: linear-gradient(160deg, hsl(230 22% 11% / 0.9), hsl(230 25% 7% / 0.9));
+    --gradient-border: linear-gradient(135deg, hsl(var(--primary) / 0.5), hsl(var(--accent-violet) / 0.4));
+
+    /* Shadows */
+    --shadow-glow: 0 0 60px hsl(var(--primary) / 0.25);
+    --shadow-elegant: 0 20px 60px -20px hsl(230 50% 2% / 0.7);
+    --shadow-soft: 0 4px 24px -8px hsl(230 50% 2% / 0.6);
+
+    /* Motion */
+    --transition-smooth: cubic-bezier(0.22, 1, 0.36, 1);
+
+    --sidebar-background: 230 25% 6%;
+    --sidebar-foreground: 220 20% 92%;
+    --sidebar-primary: 172 76% 56%;
+    --sidebar-primary-foreground: 230 30% 8%;
+    --sidebar-accent: 230 18% 14%;
+    --sidebar-accent-foreground: 220 20% 92%;
+    --sidebar-border: 230 20% 16%;
+    --sidebar-ring: 172 76% 56%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-feature-settings: "ss01", "cv11";
+  }
+
+  ::selection {
+    background: hsl(var(--primary) / 0.3);
+    color: hsl(var(--foreground));
+  }
+}
+
+@layer components {
+  .text-gradient {
+    background: var(--gradient-text);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .glass-card {
+    background: var(--gradient-card);
+    backdrop-filter: blur(20px);
+    border: 1px solid hsl(var(--border));
+    transition: all 0.5s var(--transition-smooth);
+  }
+
+  .glass-card:hover {
+    border-color: hsl(var(--primary) / 0.4);
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-elegant), 0 0 40px hsl(var(--primary) / 0.1);
+  }
+
+  .grain::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.04;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+    mix-blend-mode: overlay;
+  }
+}
